@@ -1,6 +1,9 @@
+
+#import "@preview/cetz:0.4.2"
+
 // 모의고사 첫 페이지용 빈 틀
 // 아래 값만 바꾸면 제목과 쪽수를 재사용할 수 있습니다.
-#let exam-title = "문제 생성 엔진 테스트를 위한 typst 모의고사"
+#let exam-title = "문제 생성 엔진 테스트를 위한 모의고사"
 #let subject = "수학 영역"
 #let period = "제 2 교시"
 #let form = "홀수형"
@@ -126,6 +129,23 @@
       #point-label("B")$(2, 0)$과 제 2사분면 위의 점 #point-label("A'") 에 대하여 $overline(O A) = overline(O A')$ 이고 $angle A' O A = 60 degree$ 일 때, 삼각형 #point-label("A'OA")의 외접원과 선분 #point-label("A' B")의 교점 중 점 #point-label("A'")이 아닌 점을 #point-label("P")$(a, b)$라 하자. #point-label("3ab")의 값을 구하시오.
     ]
   ]
+]
+
+// [문제 1 그림 — 문제 본문과 독립적으로 배치]
+#place(top + left, dx: 34mm, dy: 105mm)[
+  #cetz.canvas(length: 8mm, {
+    import cetz.draw: *
+
+    // 좌표축
+    line((-3, 0), (3, 0), mark: (end: ">"), stroke: 0.65pt)
+    line((0, -1), (0, 3), mark: (end: ">"), stroke: 0.65pt)
+
+    // 원점과 축 이름
+    circle((0, 0), radius: 0.045, fill: black)
+    content((0, 0), [$O$], anchor: "north-east", padding: 2pt)
+    content((3, 0), [$x$], anchor: "west", padding: 2pt)
+    content((0, 3), [$y$], anchor: "south", padding: 2pt)
+  })
 ]
 //
 // [문제 2 삽입 위치 — 왼쪽 열 하단]
