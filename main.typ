@@ -132,20 +132,53 @@
 ]
 
 // [문제 1 그림 — 문제 본문과 독립적으로 배치]
-#place(top + left, dx: 34mm, dy: 105mm)[
-  #cetz.canvas(length: 8mm, {
+#place(top + left, dx: 15.5mm, dy: 88mm)[
+  #box(width: 90mm)[
+    #align(center)[
+      #cetz.canvas(length: 12mm, {
     import cetz.draw: *
 
-    // 좌표축
-    line((-3, 0), (3, 0), mark: (end: ">"), stroke: 0.65pt)
-    line((0, -1), (0, 3), mark: (end: ">"), stroke: 0.65pt)
+    let sqrt3 = calc.sqrt(3)
+    let O = (0, 0)
+    let A = (1, sqrt3)
+    let A-prime = (-1, sqrt3)
+    let B = (2, 0)
+    let P = (1, sqrt3 / 3)
+    let circumradius = 2 / sqrt3
+    let circumcenter = (0, circumradius)
 
-    // 원점과 축 이름
-    circle((0, 0), radius: 0.045, fill: black)
-    content((0, 0), [$O$], anchor: "north-east", padding: 2pt)
+    // 좌표축
+    line((-3, 0), (3, 0), mark: (end: ">", fill: black), stroke: 0.35pt)
+    line((0, -1), (0, 4), mark: (end: ">", fill: black), stroke: 0.35pt)
+
+    // 삼각형 A'OA의 외접원: 중심 (0, 2/sqrt(3)), 반지름 2/sqrt(3)
+    // 원점 O에서 x축에 접합니다.
+    circle(circumcenter, radius: circumradius, stroke: 0.65pt)
+
+    // 선분 OA, OA'
+    line(O, A, stroke: 0.8pt)
+    line(O, A-prime, stroke: 0.8pt)
+    line(A, A-prime, stroke: 0.8pt)
+    line(A-prime, B, stroke: 0.8pt)
+
+    // 점 O, A, A', B와 원-선분의 두 번째 교점 P
+    circle(O, radius: 0.001, fill: black)
+    circle(A, radius: 0.001, fill: black)
+    circle(A-prime, radius: 0.001, fill: black)
+    circle(B, radius: 0.001, fill: black)
+    circle(P, radius: 0.001, fill: black)
+
+    // 점과 축 이름
+    content(O, [$O$], anchor: "north-east", padding: 2pt)
+    content(A, [$A$], anchor: "south-west", padding: 2pt)
+    content(A-prime, [$A'$], anchor: "south-east", padding: 2pt)
+    content(B, [$B$], anchor: "north", padding: 4pt)
+    content(P, [$P$], anchor: "south-west", padding: 2pt)
     content((3, 0), [$x$], anchor: "west", padding: 2pt)
-    content((0, 3), [$y$], anchor: "south", padding: 2pt)
-  })
+    content((0, 4), [$y$], anchor: "south", padding: 2pt)
+      })
+    ]
+  ]
 ]
 //
 // [문제 2 삽입 위치 — 왼쪽 열 하단]
